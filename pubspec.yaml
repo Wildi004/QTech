@@ -1,0 +1,49 @@
+name: qrm
+description: "A new Flutter project."
+
+publish_to: 'none' 
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.6.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  get: ^4.6.6
+  lazyui: ^4.2.3
+  flutter_launcher_icons: ^0.14.3
+  video_player: ^2.9.2
+  google_fonts: ^6.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/profile.png
+    - assets/images/
+    - assets/images/animasi2.mp4
+
+
+  fonts:
+    - family: PassionOne
+      fonts:
+        - asset: assets/static/PassionOne-Bold.ttf
+    
+    - family: Poppins
+      fonts: 
+        - asset: assets/static/font/Poppins-Bold.ttf
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/ic_launcher.png"
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/images/ic_launcher.png"
