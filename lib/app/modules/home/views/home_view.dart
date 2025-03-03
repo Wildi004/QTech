@@ -14,334 +14,461 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> items = [
-      {
-        'title': 'Sabtu Belajar !',
-        'date': 'Sabtu, 4 Januari 2025',
-        'location': 'Ruang Rapat LT.3 - Kantor',
-      },
-      {
-        'title': 'Rapat Direksi !',
-        'date': 'Sabtu, 4 Januari 2025',
-        'location': "Q'offee Shop - Diponegoro",
-      },
-      {
-        'title': 'Sabtu Ceria !',
-        'date': 'Sabtu, Januari 2025',
-        'location': 'Kuala Lumpur - Malaysia',
-      },
-    ];
+    final HomeController controller = Get.put(HomeController());
 
     double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.sizeOf(context).height;
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-      body: Center(
-        child: ListView(
-          physics: NeverScrollableScrollPhysics(),
-          padding: const EdgeInsets.all(20),
-          children: [
-            const SizedBox(height: 40),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const CircleAvatar(
-                  radius: 25,
-                  backgroundImage: AssetImage('assets/images/ic_launcher.png'),
-                ),
-                Row(
-                  children: [
-                    IconButton(
-                      icon: Icon(Icons.notifications,
-                          color: Color.fromARGB(255, 0, 0, 0), size: 30),
-                      onPressed: () {},
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        Get.toNamed(Routes.LOGIN);
-                      },
-                      icon: Icon(Icons.logout, size: 30),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            Center(
-              child: Container(
-                height: 150,
-                width: screenWidth * 0.9,
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(colors: ['750101'.hex,'460000'.hex],begin: Alignment.topCenter,end: Alignment.bottomCenter),
-                  borderRadius: BorderRadius.circular(15),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 10,
-                      spreadRadius: 2,
-                    ),
-                  ],
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10, top: 9),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Hi Bareel Husein',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const Text(
-                        'Manager IT - PUSAT',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Sisa Saldo',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          
-                          'Rp. 100.000.000,-',
-                          style: TextStyle(
-                              fontFamily: 'poppins',
-                              color: Colors.white,
-                              fontWeight: Fw.bold,
-                              fontSize: 30),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Container(
+            child: ListView(
+              physics: BouncingScrollPhysics(),
+              shrinkWrap: true,
+              padding: EdgeInsets.only(
+                left: 20,
+                right: 20,
+                top: MediaQuery.of(context).size.width * 0.088,
               ),
-            ),
-            const SizedBox(height: 10),
-            SizedBox(
-              height: 90,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: items.length,
-                itemBuilder: (context, index) {
-                  final item = items[index];
-
-                  return Container(
-                    width: 200,
-                    height: 80,
-                    margin: const EdgeInsets.only(right: 20),
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    LzImage(
+                      'ic_launcher.png',
+                      size: MediaQuery.of(context).size.height * 0.06,
+                    ),
+                    Row(
+                      children: [
+                        IconButton(
+                          icon: Icon(
+                            Hi.notification01,
+                            color: Color.fromARGB(255, 0, 0, 0),
+                            size: MediaQuery.of(context).size.width * 0.07,
+                          ),
+                          onPressed: () {},
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            Get.defaultDialog(
+                              title: "Konfirmasi Logout",
+                              titleStyle:
+                                  TextStyle(color: Colors.black, fontSize: 20),
+                              middleText: "Apakah Anda yakin ingin logout?",
+                              textConfirm: "Ya",
+                              buttonColor: '4CA1AF'.hex,
+                              textCancel: "Batal",
+                              confirmTextColor:
+                                  const Color.fromARGB(255, 243, 239, 239),
+                              onConfirm: () {
+                                // Aksi saat logout dikonfirmasi
+                                Get.offAllNamed(Routes
+                                    .LOGIN); // Menghapus semua halaman sebelumnya
+                              },
+                              onCancel: () {
+                                // Tidak melakukan apa-apa jika dibatalkan
+                              },
+                            );
+                          },
+                          icon: Icon(
+                            Icons.logout,
+                            size: MediaQuery.of(context).size.width * 0.07,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10),
+                Center(
+                  child: Container(
+                    width: screenWidth * 0.9,
+                    padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        colors: ['1F2C51'.hex, '5D688A'.hex],
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                      ),
-                      borderRadius: BorderRadius.circular(20),
+                          colors: ['4CA1AF'.hex, '808080'.hex],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter),
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color.fromARGB(255, 115, 115, 119),
+                          blurRadius: 10,
+                          spreadRadius: 1,
+                          offset: Offset(0, 8),
+                        ),
+                      ],
                     ),
-                    padding: const EdgeInsets.only(left: 20, top: 10),
-                    child: Column(
-                      crossAxisAlignment: Caa.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        if (item['title']!.isNotEmpty)
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10, top: 5),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
                           Text(
-                            item['title']!,
-                            style: const TextStyle(
+                            'Hi! Bareel Husein',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.08,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'DeliciousHandrawn'),
+                          ),
+                          Text(
+                            'Manager IT - PUSAT',
+                            style: TextStyle(
                               color: Colors.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.03,
                             ),
                           ),
-                        if (item['date']!.isNotEmpty)
+                          SizedBox(
+                            height: 10,
+                          ),
                           Text(
-                            item['date']!,
-                            style: const TextStyle(
+                            'Sisa Saldo',
+                            style: TextStyle(
                               color: Colors.white,
-                              fontSize: 10,
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.04,
                             ),
                           ),
-                        if (item['location']!.isNotEmpty) ...[
-                          const SizedBox(height: 15),
-                          Row(
+                          Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              'Rp. 100.000.000,-',
+                              style: TextStyle(
+                                fontFamily: 'poppins',
+                                color: Colors.white,
+                                fontWeight: Fw.bold,
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.08,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.035,
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width * 0.24,
+                  child: Obx(
+                    () => ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: controller.items.length,
+                      itemBuilder: (context, index) {
+                        final item = controller.items[index];
+
+                        return Container(
+                          width: MediaQuery.of(context).size.width * 0.49,
+                          margin: EdgeInsets.only(
+                            right: MediaQuery.of(context).size.width * 0.025,
+                          ),
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: ['467BF6'.hex, '5D688A'.hex],
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                            ),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          padding: EdgeInsets.only(
+                              left: MediaQuery.of(context).size.width * 0.05,
+                              top: 10),
+                          child: Column(
+                            crossAxisAlignment: Caa.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              const Icon(Icons.location_on_outlined,
-                                  color: Colors.white),
-                              const SizedBox(width: 5),
+                              if (item['title']!.isNotEmpty)
+                                Text(
+                                  item['title']!,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize:
+                                        MediaQuery.of(context).size.width *
+                                            0.04,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.width * 0.007,
+                              ),
+                              if (item['date']!.isNotEmpty)
+                                Text(
+                                  item['date']!,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize:
+                                        MediaQuery.of(context).size.width *
+                                            0.025,
+                                  ),
+                                ),
+                              if (item['location']!.isNotEmpty) ...[
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.width * 0.036,
+                                ),
+                                Row(
+                                  children: [
+                                    const Icon(Icons.location_on_outlined,
+                                        color: Colors.white),
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.01,
+                                    ),
+                                    Text(
+                                      item['location']!,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize:
+                                            MediaQuery.of(context).size.width *
+                                                0.026,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Menu Favorite",
+                      style: TextStyle(
+                          fontSize: MediaQuery.of(context).size.width * 0.04,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Poppins'),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        "Edit",
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 0, 0, 0),
+                          fontSize: MediaQuery.of(context).size.width * 0.04,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Wrap(
+                  alignment: WrapAlignment.center,
+                  spacing: MediaQuery.of(context).size.width * 0.01,
+                  runSpacing: MediaQuery.of(context).size.width * 0.03,
+                  children: List.generate(4, (i) {
+                    final label = [
+                      'Kasbon',
+                      'Capaian Kinerja',
+                      'Kategori',
+                      'Surat'
+                    ];
+
+                    final colors = [
+                      '5D688A'.hex,
+                      '4CA1AF'.hex,
+                      '9f68dd'.hex,
+                      '467bf6'.hex,
+                    ];
+
+                    final icons = [
+                      Hi.note,
+                      Hi.chartLineData02,
+                      Hi.note01,
+                      Hi.fileAttachment,
+                    ];
+
+                    return LayoutBuilder(
+                      builder: (context, constraints) {
+                        double containerSize =
+                            constraints.maxWidth * 0.2; // Ukuran Container
+                        double iconSize =
+                            constraints.maxWidth * 0.07; // Ukuran Icon
+
+                        return SizedBox(
+                          width: containerSize * 1.2, // Supaya responsif
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  if (i == 0) {
+                                    Get.toNamed(Routes.KASBON);
+                                  } else if (i == 1) {
+                                    Get.snackbar('Maaf',
+                                        'Masih dalam tahap pengembangan');
+                                  }
+                                },
+                                child: Container(
+                                  width: containerSize,
+                                  height: containerSize * 0.7,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: colors[i],
+                                  ),
+                                  child: Icon(
+                                    icons[i],
+                                    color: Colors.white,
+                                    size: iconSize,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 5),
                               Text(
-                                item['location']!,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 10,
+                                label[i],
+                                textAlign: TextAlign.center,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontSize: containerSize *
+                                      0.18, // Ukuran font responsif
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ],
                           ),
-                        ],
+                        );
+                      },
+                    );
+                  }),
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                Column(
+                  children: [
+                    Row(
+                      crossAxisAlignment: Caa.start,
+                      children: [
+                        Text(
+                          "Menu Regional",
+                          style: TextStyle(
+                            fontSize: MediaQuery.of(context).size.width * 0.04,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Poppins',
+                          ),
+                        ),
                       ],
                     ),
-                  );
-                },
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  "Menu Favorite",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    "Edit",
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 0, 0, 0), fontSize: 16),
-                  ),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                    Obx(() {
+                      int active = controller.tabIndex.value;
+
+                      return LayoutBuilder(
+                        builder: (context, constraints) {
+                          double screenWidth = constraints.maxWidth;
+                          double paddingV =
+                              screenWidth * 0.01; // Padding Vertikal
+                          double paddingH =
+                              screenWidth * 0.02; // Padding Horizontal
+                          double marginL =
+                              screenWidth * 0.02; // Margin antar tab
+                          double borderRadius =
+                              screenWidth * 0.05; // Radius Border
+
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: LzTabView(
+                                  tabs: const [
+                                    'CEO',
+                                    'BSD',
+                                    'Finance Pusat',
+                                    'Teknik',
+                                    'Regional Barat',
+                                    'Regional Timur'
+                                  ],
+                                  onTap: (key, i) {
+                                    controller.tabIndex.value = i;
+                                  },
+                                  builder: (label, i) {
+                                    bool isActive = active == i;
+
+                                    return Container(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: paddingV,
+                                          horizontal: paddingH),
+                                      decoration: BoxDecoration(
+                                        color: isActive
+                                            ? Color(0xFF467BF6)
+                                            : const Color.fromARGB(
+                                                255, 243, 238, 238),
+                                        borderRadius:
+                                            BorderRadius.circular(borderRadius),
+                                        border: Border.all(
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      margin: EdgeInsets.only(
+                                          left: i == 0 ? 0 : marginL),
+                                      child: Text(
+                                        label,
+                                        style: TextStyle(
+                                          color: isActive
+                                              ? Colors.white
+                                              : Colors.black,
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.04,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    }),
+                    SizedBox(height: MediaQuery.of(context).size.width * 0.02),
+                    Obx(() {
+                      int tab = controller.tabIndex.value;
+
+                      return LayoutBuilder(
+                        builder: (context, constraints) {
+                          double containerHeight = constraints.maxWidth * 0.4;
+
+                          Map<int, Widget> menus = {
+                            0: SizedBox(
+                                height: containerHeight, child: RegPusat()),
+                            1: SizedBox(height: containerHeight, child: Bsd()),
+                            2: SizedBox(
+                                height: containerHeight, child: FinancePusat()),
+                            3: SizedBox(
+                                height: containerHeight,
+                                child: Center(child: Text("Belum ada data"))),
+                            4: SizedBox(
+                                height: containerHeight, child: RegBarat()),
+                            5: SizedBox(
+                                height: containerHeight, child: RegTimur()),
+                          };
+
+                          return menus[tab] ??
+                              Padding(
+                                padding: EdgeInsets.all(20),
+                                child: Text('Masih dalam tahap pengembangan'),
+                              );
+                        },
+                      );
+                    }),
+                  ],
+                  
                 ),
               ],
             ),
-            Wrap(
-              alignment: WrapAlignment.center,
-              spacing: 30,
-              runSpacing: 19,
-              children: List.generate(4, (i) {
-                final label = [
-                  'Kasbon',
-                  'Capaian Kinerja',
-                  'Kategori',
-                  'Surat'
-                ];
-
-                final colors = [
-                  '05d4f3'.hex,
-                  '92b53e'.hex,
-                  'ff7f07'.hex,
-                  '467bf6'.hex,
-                ];
-
-                final icons = [
-                  Hi.note,
-                  Hi.chartLineData02,
-                  Hi.note01,
-                  Hi.fileAttachment,
-                ];
-
-                return SizedBox(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          if (i == 0) {
-                            Get.toNamed(Routes.KASBON);
-                          } else if (i == 1) {
-                            Get.snackbar(
-                                'Maaf', 'Masih dalam tahap pengembangan');
-                          }
-                        },
-                        child: Container(
-                          width: 50,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: colors[i],
-                          ),
-                          child: Icon(
-                            icons[i],
-                            color: Colors.white,
-                            size: 30,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 5),
-                      Text(
-                        label[i],
-                        textAlign: TextAlign.center,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              }),
-            ),
-            const SizedBox(height: 10),
-            const Text(
-              "Menu Regional",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 15),
-            Obx(() {
-              int active = controller.tabIndex.value;
-
-              return LzTabView(
-                tabs: const [
-                  'CEO',
-                  'BSD',
-                  'Finance Pusat',
-                  'Teknik',
-                  'Regional Barat',
-                  'Regional Timur'
-                ],
-                onTap: (key, i) {
-                  controller.tabIndex.value = i;
-                },
-                builder: (label, i) {
-                  bool isActive = active == i;
-                  return Container(
-                    padding: Ei.sym(v: 5, h: 15),
-                    decoration: BoxDecoration(
-                      color: isActive
-                          ? const Color.fromARGB(255, 142, 18, 24)
-                          : const Color.fromARGB(255, 243, 238, 238),
-                      borderRadius: Br.radius(20),
-                      border: Br.all(
-                          color: isActive
-                              ? const Color.fromARGB(255, 0, 0, 0)
-                              : Colors.black),
-                    ),
-                    margin: Ei.only(l: i == 0 ? 0 : 10),
-                    child: Text(
-                      label,
-                      style:
-                          Gfont.color(isActive ? Colors.white : Colors.black),
-                    ),
-                  );
-                },
-              );
-            }),
-            const SizedBox(height: 20),
-            Obx(() {
-              int tab = controller.tabIndex.value;
-
-              Map<int, Widget> menus = {
-                0: SizedBox(height: 500, child: RegPusat()),
-                1: SizedBox(height: 500, child: Bsd()),
-                2: SizedBox(height: 500, child: FinancePusat()),
-                4: SizedBox(height: 500, child: RegBarat()),
-                5: SizedBox(height: 500, child: RegTimur()),
-
-
-
-              };
-              return menus[tab] ??
-                  Textr('Masih dalam tahap pengembangan', padding: Ei.all(20));
-            }),
-          ],
+          ),
         ),
       ),
     );

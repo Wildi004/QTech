@@ -11,6 +11,7 @@ class AppView extends GetView<AppController> {
   const AppView({super.key});
 
   @override
+  
   Widget build(BuildContext context) {
     return Obx(() {
       return Scaffold(

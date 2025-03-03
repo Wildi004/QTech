@@ -11,7 +11,9 @@ class LoginView extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: Padding(
-        padding: const EdgeInsets.only(top: 60,),
+        padding: EdgeInsets.only(
+          top: MediaQuery.of(context).size.width * 0.19,
+        ),
         child: Center(
           child: LzListView(
             physics: AlwaysScrollableScrollPhysics(),
@@ -31,15 +33,16 @@ class LoginView extends StatelessWidget {
                         SizedBox(
                           height: 30,
                         ),
-                        const LzImage(
+                        LzImage(
                           "QTech.png",
-                          size: 300,
+                          size: MediaQuery.of(context).size.width * 0.65,
                         ),
                         Text(
                           'LOGIN',
                           style: TextStyle(
                               fontFamily: 'Poppins',
-                              fontSize: 30,
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.08,
                               fontWeight: Fw.bold),
                         ),
                       ],
@@ -49,18 +52,24 @@ class LoginView extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        LzButton(
-                          icon: Icons.qr_code,
-                          style: LzButtonStyle(backgroundColor: '302C7B'.hex),
-                          onTap: (state) {
-                            Get.snackbar('Maaf', 'Fitur ini belum tersedia');
-                          },
+                        SizedBox(
+                          
+                          child: LzButton(
+                            icon: Icons.qr_code,
+                            style: LzButtonStyle(
+                              
+                              backgroundColor: '302C7B'.hex,
+                            ),
+                            onTap: (state) {
+                              Get.snackbar('Maaf', 'Fitur ini belum tersedia');
+                            },
+                          ),
                         ),
                         SizedBox(
-                          width: 20,
+                          width:  MediaQuery.of(context).size.height * 0.01
                         ),
                         Container(
-                            width: 180,
+                            width: MediaQuery.of(context).size.height * 0.23,
                             decoration: BoxDecoration(
                                 gradient: LinearGradient(
                                     colors: [
@@ -73,8 +82,14 @@ class LoginView extends StatelessWidget {
                             child: LzButton(
                               text: 'PASSWORD',
                               style: LzButtonStyle(
-                                  backgroundColor: Colors.transparent,
-                                  textColor: Colors.white),
+                                textStyle: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width *
+                                            0.04,
+                                    color: Colors.white),
+                                backgroundColor: Colors.transparent,
+                                textColor: Colors.white,
+                              ),
                               onTap: (state) {
                                 _showLoginDialog(context);
                               },
@@ -85,11 +100,13 @@ class LoginView extends StatelessWidget {
                       height: 10,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(
-                        left: 130,
+                      padding: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.width * 0.4,
                       ),
                       child: Text(
                         'Lupa Password',
+                        style: TextStyle(
+                            fontSize: MediaQuery.of(context).size.width * 0.04),
                       ),
                     )
                   ],
@@ -103,98 +120,101 @@ class LoginView extends StatelessWidget {
   }
 
   void _showLoginDialog(BuildContext context) {
-    
     showModalBottomSheet(
       isDismissible: false,
       enableDrag: false,
       context: context,
-      isScrollControlled:
-          true, 
+      isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (context) {
-        return Padding(
-          padding: EdgeInsets.only(
-            bottom: MediaQuery.of(context)
-                .viewInsets
-                .bottom, 
-          ),
-          child: Wrap(
-            children: [
-              Container(
-                padding: EdgeInsets.only(bottom: 50,top: 20,left: 20,right: 20),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: ['A02727'.hex, '750101'.hex],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
+        return LayoutBuilder(
+          builder: (context, constraints) {
+            return Padding(
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+              ),
+              child: SizedBox(
+                width: constraints.maxWidth, // Lebar menyesuaikan layar
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                      vertical: MediaQuery.of(context).size.height * 0.02,
+                      horizontal: MediaQuery.of(context).size.width * 0.001),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: ['4CA1AF'.hex, '585858'.hex],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                    ),
+                    borderRadius:
+                        const BorderRadius.vertical(top: Radius.circular(30)),
                   ),
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
-                ),
-                child: SingleChildScrollView(
-                  
-                  child: Column(
-                    mainAxisSize:
-                        MainAxisSize.min, 
-                    children: [
-                      Text(
-                        'E-MAIL',
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 30,
-                          color: Colors.white,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'E-MAIL',
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: MediaQuery.of(context).size.width * 0.09,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: SizedBox(
-                          width: 350,
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.02),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          // Input menyesuaikan layar
                           child: LzForm.input(
                             hint: 'Enter your email',
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: SizedBox(
-                          width: 350,
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.03,
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.8,
                           child: LzForm.input(
                             hint: 'Enter your password',
                             obsecureToggle: true,
                           ),
                         ),
-                      ),
-                      Container(
-                        width: 200,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: ['302C7B'.hex, '4A90E2'.hex],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                          ),
-                          borderRadius: BorderRadius.circular(8),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.03,
                         ),
-                        child: LzButton(
-                          text: 'SUBMIT',
-                          style: LzButtonStyle(
-                            backgroundColor: Colors.transparent,
-                            textColor: Colors.white,
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.6,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: ['302C7B'.hex, '4A90E2'.hex],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
                           ),
-                          onTap: (state) {
-                            Get.toNamed(Routes.APP);
-                          },
+                          child: LzButton(
+                            text: 'SUBMIT',
+                            style: LzButtonStyle(
+                              backgroundColor: Colors.transparent,
+                              textColor: Colors.white,
+                            ),
+                            onTap: (state) {
+                              Get.toNamed(Routes.APP);
+                            },
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ],
-          ),
+            );
+          },
         );
       },
     );
   }
-}
 //form ke 2
 // import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
@@ -315,3 +335,4 @@ class LoginView extends StatelessWidget {
 //     );
 //   }
 // }
+}

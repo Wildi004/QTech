@@ -13,13 +13,14 @@ class SettingsView extends GetView<SettingsController> {
       body: Column(
         children: [
           Container(
-              height: 230,
-              padding: EdgeInsets.all(15),
+              height: MediaQuery.of(context).size.height * 0.3,
+              padding:
+                  EdgeInsets.all(MediaQuery.of(context).size.height * 0.02),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                    colors: ['1C1818'.hex, '960000'.hex],
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter),
+                    colors: ['4CA1AF'.hex, '808080'.hex],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter),
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(30),
                     bottomRight: Radius.circular(30)),
@@ -37,13 +38,15 @@ class SettingsView extends GetView<SettingsController> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(right: 40),
+                    padding: EdgeInsets.only(
+                      right: MediaQuery.of(context).size.width * 0.08,
+                    ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         LzImage(
                           'profile.png',
-                          size: 90,
+                          size: MediaQuery.of(context).size.height * 0.12,
                           radius: 50,
                         ),
                         const SizedBox(height: 5),
@@ -66,10 +69,10 @@ class SettingsView extends GetView<SettingsController> {
                       ],
                     ),
                   ),
-                  const SizedBox(width: 10),
+                  SizedBox(width: MediaQuery.of(context).size.height * 0.02),
                   Transform.translate(
-                    offset: const Offset(
-                      -30,
+                    offset: Offset(
+                      -MediaQuery.of(context).size.height * 0.04,
                       95,
                     ),
                     child: Column(
@@ -77,15 +80,20 @@ class SettingsView extends GetView<SettingsController> {
                       children: [
                         Text(
                           'Bareel Husein, S.Kom',
-                          style: const TextStyle(
-                            fontSize: 18,
+                          style: TextStyle(
+                            fontSize:
+                                MediaQuery.of(context).size.height * 0.023,
                             fontWeight: Fw.bold,
                             color: Colors.white,
                           ),
                         ),
-                        const Text(
+                        Text(
                           'Manager IT - Pusat',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize:
+                                MediaQuery.of(context).size.height * 0.02,
+                          ),
                         ),
                       ],
                     ),
@@ -128,23 +136,23 @@ class SettingsView extends GetView<SettingsController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: const Text(
+                        padding:  EdgeInsets.only(left: MediaQuery.of(context).size.height * 0.01,),
+                        child:  Text(
                           'Februari - 2025',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 18,
+                            fontSize: MediaQuery.of(context).size.height * 0.025,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
-                      const SizedBox(height: 10),
+                       SizedBox(height: MediaQuery.of(context).size.height * 0.01,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          _buildInfoBox("2", "Hari", "Cuti"),
-                          _buildInfoBox("6", "Hari", "Izin"),
-                          _buildInfoBox("1000", "Menit", "Telat"),
+                          _buildInfoBox("2", "Hari", "Cuti",context),
+                          _buildInfoBox("6", "Hari", "Izin",context),
+                          _buildInfoBox("1000", "Menit", "Telat",context),
                         ],
                       ),
                     ],
@@ -180,7 +188,7 @@ class SettingsView extends GetView<SettingsController> {
                           'Password',
                           'Buku Bank',
                           'Bonus',
-                          'Cuti',
+                          'Cuti'
                         ].generate((l, i) => Menu(
                             l,
                             [
@@ -228,12 +236,12 @@ class AccountOption extends StatelessWidget {
           onTap: () {},
           hoverable: true,
           child: Container(
-            padding: Ei.sym(v: 15),
+            padding: Ei.sym(v: MediaQuery.of(context).size.width * 0.04),
             decoration: BoxDecoration(border: Br.only(['t'], except: i == 0)),
             child: Row(
               children: [
-                Textr(menu.label, icon: menu.icon),
-                const Icon(Hi.arrowRight01)
+                Textr(menu.label, icon: menu.icon,style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.04),),
+                 Icon(Hi.arrowRight01,size: MediaQuery.of(context).size.width * 0.05,)
               ],
             ).between,
           ),
@@ -243,9 +251,10 @@ class AccountOption extends StatelessWidget {
   }
 }
 
-Widget _buildInfoBox(String number, String unit, String label) {
+Widget _buildInfoBox(String number, String unit, String label,BuildContext context,) {
+  double fontSizes = MediaQuery.of(context).size.width * 0.05;
   return Padding(
-    padding: const EdgeInsets.only(left: 20, right: 20),
+    padding:  EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.04, right: MediaQuery.of(context).size.width * 0.04),
     child: Column(
       children: [
         Text.rich(
@@ -253,9 +262,9 @@ Widget _buildInfoBox(String number, String unit, String label) {
             children: [
               TextSpan(
                 text: number,
-                style: const TextStyle(
+                style: TextStyle(
                   color: Colors.white,
-                  fontSize: 20,
+                  fontSize: fontSizes,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -270,8 +279,8 @@ Widget _buildInfoBox(String number, String unit, String label) {
           ),
         ),
         Text(label,
-            style: const TextStyle(
-                color: Colors.white, fontSize: 12, fontWeight: Fw.bold)),
+            style:  TextStyle(
+                color: Colors.white, fontSize: MediaQuery.of(context).size.width * 0.04, fontWeight: Fw.bold)),
       ],
     ),
   );

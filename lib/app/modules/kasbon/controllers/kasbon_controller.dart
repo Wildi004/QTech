@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lazyui/lazyui.dart';
+import 'package:qrm/app/modules/kasbon/views/models/models.dart';
 
 class KasbonController extends GetxController {
   Rx<TextEditingController> nominalController = TextEditingController().obs;
@@ -8,7 +9,11 @@ class KasbonController extends GetxController {
   Rx<DateTime?> selectedDate = Rx<DateTime?>(null);
   RxDouble height = 140.0.obs;
   var showDetails = false.obs;
+var kasbonList = <Kasbon>[].obs;
 
+  void addKasbon(Kasbon kasbon) {
+    kasbonList.add(kasbon);
+  }
   void adjustHeader(double value) {
     height.value = value;
   }
@@ -66,7 +71,7 @@ class KasbonController extends GetxController {
                   width: double.infinity,
                   height: 50,
                   decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 79, 22, 18),
+                    color:  Color(0xFF4CA1AF),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(15),
                       topRight: Radius.circular(15),
@@ -180,7 +185,7 @@ class KasbonController extends GetxController {
                           child: Container(
                             padding: const EdgeInsets.symmetric(vertical: 12),
                             decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 82, 16, 16),
+                              color: '808080'.hex,
                               borderRadius: BorderRadius.circular(60),
                             ),
                             alignment: Alignment.center,
@@ -208,7 +213,7 @@ class KasbonController extends GetxController {
                             }
 
                             Get.snackbar("Berhasil", "Kasbon diajukan!",
-                                backgroundColor: Colors.green,
+                                backgroundColor: Colors.transparent,
                                 colorText: Colors.white);
 
                             Navigator.pop(context);
@@ -216,7 +221,7 @@ class KasbonController extends GetxController {
                           child: Container(
                             padding: const EdgeInsets.symmetric(vertical: 12),
                             decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 82, 16, 16),
+                              color: Color(0xFF4CA1AF),
                               borderRadius: BorderRadius.circular(60),
                             ),
                             alignment: Alignment.center,

@@ -16,12 +16,18 @@ class NavbarWidget extends GetView<AppController> {
       int navIndex = controller.navIndex.value;
 
       return Padding(
-        padding: const EdgeInsets.only(left: 20,right: 20,top: 10),
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).size.width * 0.02,
+            left: MediaQuery.of(context).size.width * 0.06,
+            right: MediaQuery.of(context).size.width * 0.06,
+            top: MediaQuery.of(context).size.width * 0.003),
         child: Container(
-          
-          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+          padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.width * 0.01, horizontal: MediaQuery.of(context).size.width * 0.02),
           decoration: BoxDecoration(
-            color: '6E0606'.hex,
+            gradient: LinearGradient(
+                colors: ['4CA1AF'.hex, '808080'.hex],
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter),
             borderRadius: BorderRadius.circular(50),
             border: Border.all(color: const Color.fromARGB(66, 118, 13, 13)),
             boxShadow: [
@@ -42,17 +48,21 @@ class NavbarWidget extends GetView<AppController> {
                   Color color = navIndex == i
                       ? const Color.fromARGB(221, 255, 255, 255)
                       : const Color.fromARGB(255, 0, 0, 0);
-        
+
                   return InkWell(
                     onTap: () => onTap?.call(i),
                     borderRadius: BorderRadius.circular(10),
                     child: Padding(
-                      padding:
-                          const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+                      padding:  EdgeInsets.symmetric(
+                          vertical: MediaQuery.of(context).size.width * 0.005, horizontal: MediaQuery.of(context).size.width * 0.02),
                       child: Column(
                         children: [
-                          Icon(item, color: color, size: 24,),
-                          Text(labels[i], style: Gfont.fs12.fcolor(color)),
+                          Icon(
+                            item,
+                            color: color,
+                            size: MediaQuery.of(context).size.width * 0.066,
+                          ),
+                          Text(labels[i], style: Gfont.fs12.fcolor(color,).copyWith(fontSize: MediaQuery.of(context).size.width * 0.03)),
                           AnimatedContainer(
                             duration: const Duration(milliseconds: 300),
                             height: 3,

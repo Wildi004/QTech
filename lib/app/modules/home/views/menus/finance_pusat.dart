@@ -35,7 +35,7 @@ class FinancePusat extends StatelessWidget {
           ];
 
           return Container(
-            margin: Ei.only(l: i == 0 ? 0 : 20),
+            margin: Ei.only(l: i == 0 ? 0 : MediaQuery.of(context).size.width * 0.03),
             child: Column(
               children: [
                 GestureDetector(
@@ -47,13 +47,13 @@ class FinancePusat extends StatelessWidget {
                     child: Icon(
                       icon,
                       color: const Color.fromARGB(255, 0, 0, 0),
-                      size: 35,
+                      size: MediaQuery.of(context).size.width * 0.1,
                     ),
                   ),
                 ),
                 Text(
                   labels[i],
-                  style: Gfont.fs14,
+                  style: Gfont.fs14.copyWith(fontSize: MediaQuery.of(context).size.height * 0.018),
                   textAlign: Ta.center,
                 )
               ],

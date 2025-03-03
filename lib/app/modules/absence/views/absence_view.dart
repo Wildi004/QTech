@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:lazyui/lazyui.dart';
-import 'package:qrm/app/modules/absence/controllers/absence_controller.dart';
 import 'package:qrm/app/modules/kasbon/controllers/kasbon_controller.dart';
 import 'package:flutter/material.dart';
 
@@ -42,7 +41,7 @@ class _AbsenceViewState extends State<AbsenceView> {
     },
     {
       "bulan": "Desember",
-      "data":[
+      "data": [
         {'tanggal': 'Senin, 10 Desember 2025', 'status': 'Sakit'},
         {'tanggal': 'Sabtu, 8 Desember 2025', 'status': 'Normal'},
         {'tanggal': 'Jumat, 7 Desember 2025', 'status': 'Normal'},
@@ -71,7 +70,9 @@ class _AbsenceViewState extends State<AbsenceView> {
       body: Center(
         child: LzListView(
           physics: NeverScrollableScrollPhysics(),
-          padding: Ei.sym(h: 30, v: 25),
+          padding: Ei.sym(
+              h: MediaQuery.of(context).size.height * 0.035,
+              v: MediaQuery.of(context).size.height * 0.02),
           children: [
             Center(
               child: Column(
@@ -86,29 +87,46 @@ class _AbsenceViewState extends State<AbsenceView> {
                         children: [
                           LzImage(
                             'profile.png',
-                            size: 60,
+                            size: MediaQuery.of(context).size.height * 0.075,
                             radius: 50,
                           ),
-                          SizedBox(width: 20),
+                          SizedBox(
+                              width: MediaQuery.of(context).size.height * 0.02),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 'Bareel Husein, S. Kom',
                                 style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold),
+                                    fontSize:
+                                        MediaQuery.of(context).size.height *
+                                            0.02,
+                                    fontWeight: FontWeight.bold),
                               ),
-                              Text('Manager IT - Pusat'),
+                              Text(
+                                'Manager IT - Pusat',
+                                style: TextStyle(
+                                  fontSize: MediaQuery.of(context).size.height *
+                                      0.016,
+                                ),
+                              ),
                             ],
                           ),
                         ],
                       ),
-                      SizedBox(height: 15),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.019,
+                      ),
                       Container(
                         width: MediaQuery.of(context).size.width * 0.9,
-                        padding: EdgeInsets.all(15),
+                        padding: EdgeInsets.all(
+                          MediaQuery.of(context).size.height * 0.02,
+                        ),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black, width: 2),
+                          border: Border.all(
+                            color: Colors.black,
+                            width: MediaQuery.of(context).size.height * 0.003,
+                          ),
                           color: Colors.transparent,
                           borderRadius: BorderRadius.circular(15),
                         ),
@@ -119,7 +137,8 @@ class _AbsenceViewState extends State<AbsenceView> {
                               '09:45:00 WITA',
                               style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 20,
+                                fontSize:
+                                    MediaQuery.of(context).size.height * 0.025,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -127,62 +146,120 @@ class _AbsenceViewState extends State<AbsenceView> {
                               'Rabu, 5 Februari 2025',
                               style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 12,
+                                fontSize:
+                                    MediaQuery.of(context).size.height * 0.014,
                               ),
                             ),
-                            SizedBox(height: 10),
-                            Row( 
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.01,
+                            ),
+                            Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: const [
+                                  children: [
                                     Text(
                                       'Absen Masuk',
                                       style: TextStyle(
-                                          fontSize: 15,
-                                          color: Colors.black,
-                                          fontWeight: Fw.bold,fontFamily: 'Poppins'),
+                                        fontSize:
+                                            MediaQuery.of(context).size.height *
+                                                0.02,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'Poppins',
+                                      ),
                                     ),
                                     Text(
                                       '00:00:00 WITA',
-                                      
-                                    ),
-                                    Text(
-                                      'Terlambat',
                                       style: TextStyle(
-                                          color: Colors.black,
-                                          backgroundColor:
-                                              Color.fromARGB(255, 255, 0, 0)),
-                                    )
+                                        fontSize:
+                                            MediaQuery.of(context).size.height *
+                                                0.02,
+                                      ),
+                                    ),
+
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.02,
+                                    ), // Jarak antar teks
+
+                                    Container(
+                                      padding: EdgeInsets.all(
+                                        MediaQuery.of(context).size.height *
+                                            0.0025,
+                                      ), // Padding agar lebih rapi
+                                      decoration: BoxDecoration(
+                                        color: Color.fromARGB(255, 255, 0,
+                                            0), // Warna latar belakang merah
+                                        borderRadius: BorderRadius.circular(
+                                            5), // Membuat sudut melengkung
+                                      ),
+                                      child: Text(
+                                        'Terlambat',
+                                        style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.02,
+                                          color: Colors
+                                              .white, // Warna teks dibuat putih agar kontras
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
                                 Column(
                                   crossAxisAlignment: Caa.start,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.only(right: 20),
-                                      child: const Text(
+                                      padding: EdgeInsets.only(
+                                        right:
+                                            MediaQuery.of(context).size.height *
+                                                0.007,
+                                        top:
+                                            MediaQuery.of(context).size.height *
+                                                0.001,
+                                      ),
+                                      child: Text(
                                         'Absen Pulang',
                                         style: TextStyle(
-                                            fontSize: 15,
+                                            fontSize: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.02,
                                             color: Colors.black,
-                                            fontWeight: Fw.bold, fontFamily: 'Poppins'),
+                                            fontWeight: Fw.bold,
+                                            fontFamily: 'Poppins'),
                                       ),
                                     ),
-                                    Text('00:00:00 WITA'),
-                                    Text('')
+                                    Text(
+                                      '00:00:00 WITA',
+                                      style: TextStyle(
+                                        fontSize:
+                                            MediaQuery.of(context).size.height *
+                                                0.02,
+                                      ),
+                                    ),
+                                    Text(''),
+                                    Text(''),
                                   ],
                                 ),
                               ],
                             ),
-                            SizedBox(height: 30),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.02,
+                            ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Container(
-                                  height: 30,
-                                  width: 120,
+                                  height:  MediaQuery.of(context).size.height *
+                                                0.05,
+                                  width:  MediaQuery.of(context).size.width *
+                                                0.35,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
                                     gradient: LinearGradient(
@@ -219,7 +296,8 @@ class _AbsenceViewState extends State<AbsenceView> {
                     ],
                   ),
 
-                  SizedBox(height: 20),
+                  SizedBox(height:  MediaQuery.of(context).size.height *
+                                                0.02,),
 
                   Center(
                     child: Column(
@@ -227,7 +305,8 @@ class _AbsenceViewState extends State<AbsenceView> {
                       children: [
                         Container(
                           width: MediaQuery.of(context).size.width * 0.9,
-                          padding: EdgeInsets.all(15),
+                          padding: EdgeInsets.all( MediaQuery.of(context).size.height *
+                                                0.023),
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
                               colors: [Color(0xFF100C58), Color(0xFF5E5BA7)],
@@ -244,7 +323,8 @@ class _AbsenceViewState extends State<AbsenceView> {
                                     'Jumlah Telat Bulan :',
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 14,
+                                      fontSize:  MediaQuery.of(context).size.height *
+                                                0.02,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -252,7 +332,8 @@ class _AbsenceViewState extends State<AbsenceView> {
                                     '10x (Hari)',
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 14,
+                                      fontSize:  MediaQuery.of(context).size.height *
+                                                0.02,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -266,7 +347,8 @@ class _AbsenceViewState extends State<AbsenceView> {
                                     'Februari',
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 20,
+                                      fontSize:  MediaQuery.of(context).size.height *
+                                                0.025,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -274,7 +356,8 @@ class _AbsenceViewState extends State<AbsenceView> {
                                     '45 Menit (Total)',
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 14,
+                                      fontSize:  MediaQuery.of(context).size.height *
+                                                0.02,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -283,12 +366,14 @@ class _AbsenceViewState extends State<AbsenceView> {
                             ],
                           ),
                         ),
-                        SizedBox(height: 10),
+                        SizedBox(height:  MediaQuery.of(context).size.height *
+                                                0.011,),
                         Column(
                           children: [
                             SizedBox(
                               height:
-                                  200, // Sesuaikan tinggi agar daftar bulan bisa di-scroll
+                                  MediaQuery.of(context).size.height *
+                                                0.25, // Sesuaikan tinggi agar daftar bulan bisa di-scroll
                               child: SingleChildScrollView(
                                 physics: AlwaysScrollableScrollPhysics(),
                                 child: Column(
@@ -307,8 +392,7 @@ class _AbsenceViewState extends State<AbsenceView> {
                                           },
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(
-                                                vertical: 8.0,
-                                                horizontal: 4),
+                                                vertical: 8.0, horizontal: 4),
                                             child: Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment
@@ -317,7 +401,8 @@ class _AbsenceViewState extends State<AbsenceView> {
                                                 Text(
                                                   bulan,
                                                   style: TextStyle(
-                                                      fontSize: 18,
+                                                      fontSize: MediaQuery.of(context).size.height *
+                                                0.025,
                                                       fontWeight:
                                                           FontWeight.bold),
                                                 ),
@@ -326,7 +411,8 @@ class _AbsenceViewState extends State<AbsenceView> {
                                                       ? Icons.keyboard_arrow_up
                                                       : Icons
                                                           .keyboard_arrow_down,
-                                                  size: 24,
+                                                  size: MediaQuery.of(context).size.height *
+                                                0.03,
                                                 ),
                                               ],
                                             ),
@@ -354,10 +440,12 @@ class _AbsenceViewState extends State<AbsenceView> {
                                                     children: [
                                                       Text(absen['tanggal'],
                                                           style: TextStyle(
-                                                              fontSize: 13)),
+                                                              fontSize: MediaQuery.of(context).size.height *
+                                                0.017)),
                                                       Text(absen['status'],
                                                           style: TextStyle(
-                                                              fontSize: 13)),
+                                                              fontSize: MediaQuery.of(context).size.height *
+                                                0.017)),
                                                     ],
                                                   ),
                                                 );

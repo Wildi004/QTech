@@ -30,7 +30,7 @@ class KasbonView extends GetView<KasbonController> {
                   height: controller.height.value,
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [Color(0xFF750101), Color(0xFF460000)],
+                      colors: ['808080'.hex, '4CA1AF'.hex],
                       begin: Alignment.bottomCenter,
                       end: Alignment.topCenter,
                     ),
@@ -64,7 +64,7 @@ class KasbonView extends GetView<KasbonController> {
                 Padding(
                   padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
                   child: Container(
-                    height: 70,
+                    height: MediaQuery.of(context).size.height * 0.09,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       gradient: LinearGradient(
@@ -82,14 +82,23 @@ class KasbonView extends GetView<KasbonController> {
                               padding: const EdgeInsets.only(left: 17, top: 10),
                               child: Text(
                                 'Sisa Saldo Bareel Husein',
-                                style: TextStyle(color: Colors.white),
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize:
+                                        MediaQuery.of(context).size.width *
+                                            0.042),
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 17, top: 5),
+                              padding: EdgeInsets.only(
+                                  left: 17,
+                                  top: MediaQuery.of(context).size.width *
+                                      0.006),
                               child: Text(
-                                'Rp. - 100.000.000,-',
+                                'Rp.  100.000.000,-',
                                 style: TextStyle(
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * 0.045,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -126,11 +135,12 @@ class KasbonView extends GetView<KasbonController> {
                                 ),
                               ),
                               const SizedBox(height: 5),
-                              const Text(
+                              Text(
                                 'Ajukan',
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 12,
+                                  fontSize:
+                                      MediaQuery.of(context).size.width * 0.03,
                                 ),
                               ),
                             ],
@@ -143,9 +153,9 @@ class KasbonView extends GetView<KasbonController> {
                 Padding(
                   padding: const EdgeInsets.only(left: 15, right: 15),
                   child: Container(
-                    height: 40,
+                    height: MediaQuery.of(context).size.height * 0.06,
                     decoration: BoxDecoration(
-                        color: Color(0xFF750101),
+                        color:Color(0xFF5E5BA7),
                         borderRadius: BorderRadius.circular(10)),
                     child: Align(
                       child: Row(
@@ -156,11 +166,15 @@ class KasbonView extends GetView<KasbonController> {
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 14),
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.04),
                           ),
                           Text(
                             ' Saldo anda minus...',
-                            style: TextStyle(color: Colors.white, fontSize: 14),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.037),
                           )
                         ],
                       ),
@@ -171,7 +185,9 @@ class KasbonView extends GetView<KasbonController> {
                   padding: const EdgeInsets.only(left: 20),
                   child: Text(
                     'Daftar Kasbon :',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: MediaQuery.of(context).size.width * 0.046),
                   ),
                 ),
                 Padding(
@@ -194,14 +210,17 @@ class KasbonView extends GetView<KasbonController> {
                                 Text(
                                   ' 1.',
                                   style: TextStyle(
-                                    fontSize: 15,
+                                    fontSize:
+                                        MediaQuery.of(context).size.width *
+                                            0.045,
                                   ),
                                 ),
                                 Icon(
                                   controller.showDetails.value
                                       ? Icons.keyboard_arrow_up
                                       : Icons.keyboard_arrow_down,
-                                  size: 24,
+                                  size:
+                                      MediaQuery.of(context).size.width * 0.066,
                                 ),
                               ],
                             ),
@@ -211,10 +230,11 @@ class KasbonView extends GetView<KasbonController> {
                                 child: Container(
                                   width:
                                       MediaQuery.of(context).size.width * 0.9,
-                                  height: 150,
+                                  height:
+                                      MediaQuery.of(context).size.width * 0.4,
                                   decoration: BoxDecoration(
                                     gradient: LinearGradient(
-                                        colors: ['750101'.hex, '460000'.hex]),
+                                        colors: ['808080'.hex, '4CA1AF'.hex],begin: Alignment.bottomCenter,end: Alignment.topCenter),
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: ListView.builder(
@@ -225,7 +245,7 @@ class KasbonView extends GetView<KasbonController> {
                                       final absen = absensiFebruari[index];
                                       return Padding(
                                         padding: const EdgeInsets.only(
-                                             left: 20, right: 10),
+                                            left: 20, right: 10),
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -237,7 +257,11 @@ class KasbonView extends GetView<KasbonController> {
                                                 child: (Text(
                                                   absen['tanggal']!,
                                                   style: TextStyle(
-                                                      fontSize: 17,
+                                                      fontSize:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.048,
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       color: Colors.white,
@@ -251,12 +275,20 @@ class KasbonView extends GetView<KasbonController> {
                                               children: [
                                                 Text(absen['keterangan']!,
                                                     style: TextStyle(
-                                                        fontSize: 13,
+                                                        fontSize: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.036,
                                                         color: Colors.white,
                                                         fontFamily: 'Poppins')),
                                                 Text(absen['status']!,
                                                     style: TextStyle(
-                                                        fontSize: 15,
+                                                        fontSize: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.039,
                                                         color: Colors.white,
                                                         fontFamily: 'Poppins')),
                                               ],
@@ -273,14 +305,22 @@ class KasbonView extends GetView<KasbonController> {
                                                   Text(
                                                     'Validasi :',
                                                     style: TextStyle(
-                                                        fontSize: 12,
+                                                        fontSize: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.033,
                                                         color: Colors.white70,
                                                         fontWeight: Fw.bold),
                                                   ),
                                                   Text(
                                                     absen['validasi']!,
                                                     style: TextStyle(
-                                                        fontSize: 12,
+                                                        fontSize: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.033,
                                                         color: Colors.white70,
                                                         fontWeight: Fw.bold),
                                                   ),

@@ -40,6 +40,14 @@ flutter:
     - family: Poppins
       fonts: 
         - asset: assets/static/font/Poppins-Bold.ttf
+    
+    - family: DeliciousHandrawn
+      fonts: 
+        - asset: assets/static/DeliciousHandrawn-Regular.ttf
+    
+    - family: PermanentMarker
+      fonts: 
+        - asset: assets/static/PermanentMarker-Regular.ttf
 
 flutter_icons:
   android: true
