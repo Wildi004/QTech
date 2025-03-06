@@ -19,9 +19,9 @@ var kasbonList = <Kasbon>[].obs;
   }
 
   Future<void> refreshData() async {
-    await Future.delayed(Duration(seconds: 1)); // Simulasi loading
-    // Reset data ke default (jika pakai GetX, panggil controller.reset())
-    // contoh: controller.fetchData();
+    await Future.delayed(Duration(seconds: 1)); 
+    
+    
 
     if (!Get.isSnackbarOpen) {
       Get.snackbar(
@@ -98,6 +98,7 @@ var kasbonList = <Kasbon>[].obs;
                     ],
                   ),
                 ),
+
                 const SizedBox(height: 10),
                 Expanded(
                   child: Padding(

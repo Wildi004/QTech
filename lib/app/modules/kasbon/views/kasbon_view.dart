@@ -24,7 +24,7 @@ class KasbonView extends GetView<KasbonController> {
         onRefresh: refreshController.refreshData,
         child: Stack(
           children: [
-            // Header
+            
             Obx(() => Container(
                   width: MediaQuery.of(context).size.width,
                   height: controller.height.value,
@@ -47,7 +47,7 @@ class KasbonView extends GetView<KasbonController> {
                   ),
                 )),
 
-            // ListView
+            
             LzListView(
               physics: const NeverScrollableScrollPhysics(),
               gap: 20,
@@ -123,7 +123,7 @@ class KasbonView extends GetView<KasbonController> {
                                     color: Colors.white,
                                     boxShadow: [
                                       BoxShadow(
-                                        // ignore: deprecated_member_use
+                                        
                                         color: Colors.black.withOpacity(0.2),
                                         blurRadius: 5,
                                         spreadRadius: 1,
@@ -202,7 +202,7 @@ class KasbonView extends GetView<KasbonController> {
                           controller.showDetails.value =
                               !controller.showDetails.value;
                         },
-                        child: Column(
+                        child: Column(                  
                           children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -357,7 +357,7 @@ class KasbonView extends GetView<KasbonController> {
                         SizedBox(width: 5),
                         Icon(
                           showDetails
-                              // ignore: dead_code
+                              
                               ? Icons.keyboard_arrow_up
                               : Icons.keyboard_arrow_down,
                           size: 24,
@@ -383,7 +383,6 @@ class KasbonView extends GetView<KasbonController> {
                         SizedBox(width: 5),
                         Icon(
                           showDetails
-                              // ignore: dead_code
                               ? Icons.keyboard_arrow_up
                               : Icons.keyboard_arrow_down,
                           size: 24,

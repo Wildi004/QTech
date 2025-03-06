@@ -62,12 +62,12 @@ class HomeView extends GetView<HomeController> {
                               confirmTextColor:
                                   const Color.fromARGB(255, 243, 239, 239),
                               onConfirm: () {
-                                // Aksi saat logout dikonfirmasi
+                                
                                 Get.offAllNamed(Routes
-                                    .LOGIN); // Menghapus semua halaman sebelumnya
+                                    .LOGIN); 
                               },
                               onCancel: () {
-                                // Tidak melakukan apa-apa jika dibatalkan
+                                
                               },
                             );
                           },
@@ -145,7 +145,7 @@ class HomeView extends GetView<HomeController> {
                                     MediaQuery.of(context).size.width * 0.08,
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -291,12 +291,12 @@ class HomeView extends GetView<HomeController> {
                     return LayoutBuilder(
                       builder: (context, constraints) {
                         double containerSize =
-                            constraints.maxWidth * 0.2; // Ukuran Container
+                            constraints.maxWidth * 0.2; 
                         double iconSize =
-                            constraints.maxWidth * 0.07; // Ukuran Icon
+                            constraints.maxWidth * 0.07; 
 
                         return SizedBox(
-                          width: containerSize * 1.2, // Supaya responsif
+                          width: containerSize * 1.2, 
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -332,7 +332,7 @@ class HomeView extends GetView<HomeController> {
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   fontSize: containerSize *
-                                      0.18, // Ukuran font responsif
+                                      0.18, 
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -367,13 +367,13 @@ class HomeView extends GetView<HomeController> {
                         builder: (context, constraints) {
                           double screenWidth = constraints.maxWidth;
                           double paddingV =
-                              screenWidth * 0.01; // Padding Vertikal
+                              screenWidth * 0.01; 
                           double paddingH =
-                              screenWidth * 0.02; // Padding Horizontal
+                              screenWidth * 0.02; 
                           double marginL =
-                              screenWidth * 0.02; // Margin antar tab
+                              screenWidth * 0.02; 
                           double borderRadius =
-                              screenWidth * 0.05; // Radius Border
+                              screenWidth * 0.05; 
 
                           return Row(
                             mainAxisAlignment: MainAxisAlignment.center,

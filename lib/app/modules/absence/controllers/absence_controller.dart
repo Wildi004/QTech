@@ -8,7 +8,7 @@ class AbsenceController extends GetxController {
       isSnackbarVisible.value = true;
       Get.snackbar('Absen Pulang', 'Berhasil Absen Pulang');
 
-      // Setelah 2 detik, reset kembali agar bisa menampilkan snackbar lagi
+      
       Future.delayed(Duration(seconds: 4), () {
         isSnackbarVisible.value = false;
       });

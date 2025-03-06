@@ -53,11 +53,9 @@ class LoginView extends StatelessWidget {
                     Row(
                       children: [
                         SizedBox(
-                          
                           child: LzButton(
                             icon: Icons.qr_code,
                             style: LzButtonStyle(
-                              
                               backgroundColor: '302C7B'.hex,
                             ),
                             onTap: (state) {
@@ -66,8 +64,7 @@ class LoginView extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          width:  MediaQuery.of(context).size.height * 0.01
-                        ),
+                            width: MediaQuery.of(context).size.height * 0.01),
                         Container(
                             width: MediaQuery.of(context).size.height * 0.23,
                             decoration: BoxDecoration(
@@ -134,7 +131,7 @@ class LoginView extends StatelessWidget {
                 bottom: MediaQuery.of(context).viewInsets.bottom,
               ),
               child: SizedBox(
-                width: constraints.maxWidth, // Lebar menyesuaikan layar
+                width: constraints.maxWidth,
                 child: Container(
                   padding: EdgeInsets.symmetric(
                       vertical: MediaQuery.of(context).size.height * 0.02,
@@ -165,7 +162,6 @@ class LoginView extends StatelessWidget {
                             height: MediaQuery.of(context).size.height * 0.02),
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.8,
-                          // Input menyesuaikan layar
                           child: LzForm.input(
                             hint: 'Enter your email',
                           ),
@@ -215,124 +211,4 @@ class LoginView extends StatelessWidget {
       },
     );
   }
-//form ke 2
-// import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
-// import 'dart:ui';
-// import 'package:lazyui/lazyui.dart';
-
-// class LoginView extends StatelessWidget {
-//   const LoginView({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Center(
-//         child: LzListView(
-//           scrollLimit: const [50, 50],
-//           shrinkWrap: true,
-//           padding: Ei.sym(h: 45, v: 100),
-//           children: [
-//             Center(
-//               child: Column(
-//                 mainAxisAlignment: Maa.center,
-//                 spacing: 25,
-//                 children: [
-//                   Column(
-//                     children: [
-//                       Text(
-//                         "PT. QINARAYA MANDIRI",
-//                         style: TextStyle(fontWeight: Fw.bold),
-//                       ),
-//                       SizedBox(height: 30),
-//                       const LzImage("QTech.png", size: 300),
-//                       Text('Login',
-//                           style: TextStyle(fontWeight: Fw.bold, fontSize: 30)),
-//                     ],
-//                   ),
-//                   Row(
-//                     children: [
-//                       LzButton(
-//                         icon: Hi.abacus,
-//                         style: LzButtonStyle(backgroundColor: '302C7B'.hex),
-//                         onTap: (state) {
-//                           Get.snackbar('Maaf', 'Fitur ini belum tersedia');
-//                         },
-//                       ),
-//                       SizedBox(width: 20),
-//                       Expanded(
-//                         child: LzButton(
-//                           text: 'Password',
-//                           style: LzButtonStyle(backgroundColor: '302C7B'.hex),
-//                           onTap: (state) {
-//                             _showLoginDialog(context);
-//                           },
-//                         ),
-//                       ),
-//                     ],
-//                   )
-//                 ],
-//               ),
-//             )
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-
-//   void _showLoginDialog(BuildContext context) {
-//     showDialog(
-//       context: context,
-//       barrierDismissible: true,
-//       builder: (context) {
-//         return BackdropFilter(
-//           filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-//           child: Dialog(
-//             backgroundColor: Colors.transparent,
-//             shape:
-//                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-//             child: Padding(
-//               padding: const EdgeInsets.all(20.0),
-//               child: Column(
-//                 mainAxisSize: MainAxisSize.min,
-//                 children: [
-//                   Text("Login",
-//                       style:
-//                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-//                   LzForm.input(label: 'Email', hint: 'Enter your email', ),
-//                   SizedBox(height: 20,),
-//                     Column(
-//                       children: [
-//                         Row(
-//                           children: [
-//                             Text('Password', style: Gfont.fs14),
-//                             // Touch(onTap: () {}, child: Text('Forgot password?', style: Gfont.fs14.fcolor('7367ef'.hex))),
-//                           ],
-//                         ).between,
-//                         LzForm.input(hint: 'Enter your password', obsecureToggle: true,),
-//                       ],
-//                     ),
-//                     SizedBox(height: 20,),
-//                     Row(
-//                       children: [
-//                         Expanded(
-//                           child: LzButton(
-//                             text: 'Login',
-//                             style: LzButtonStyle(backgroundColor: '302C7B'.hex),
-//                             onTap: (state) {
-
-//                             }
-//                           ),
-//                         ),
-//                       ],
-//                     )
-//                 ],
-//               ),
-//             ),
-//           ),
-//         );
-//       },
-//     );
-//   }
-// }
 }

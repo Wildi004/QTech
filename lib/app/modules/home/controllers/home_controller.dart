@@ -30,7 +30,7 @@ class HomeController extends GetxController {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (scrollController.hasClients) {
         scrollController.animateTo(
-          140 * 1, // Scroll ke item kedua
+          140 * 1, 
           duration: Duration(milliseconds: 200),
           curve: Curves.easeInOut,
         );
