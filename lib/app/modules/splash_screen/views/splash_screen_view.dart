@@ -8,13 +8,11 @@ class SplashScreenView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     final SplashScreenController controller = Get.find();
 
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
-        
         child: Obx(() {
           if (controller.isVideoInitialized.value) {
             return AspectRatio(
@@ -23,15 +21,9 @@ class SplashScreenView extends StatelessWidget {
             );
           } else {
             return CircularProgressIndicator();
-            
           }
-          
         }),
-        
       ),
-      
     );
-    
   }
-
 }

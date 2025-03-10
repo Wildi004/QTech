@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide ContextExtensionss;
 import 'package:lazyui/lazyui.dart';
+import 'package:qrm/app/data/apis/api.dart';
+import 'package:qrm/app/data/services/storage/auth.dart';
 import 'package:qrm/app/modules/settings/controllers/settings_controller.dart';
+import 'package:qrm/app/routes/app_pages.dart';
 
-class SettingsView extends GetView<SettingsController> {
-  const SettingsView({super.key});
+class SettingsView extends GetView<SettingsController> with Apis {
+  SettingsView({super.key});
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+    final SettingsController controller = Get.put(SettingsController());
 
     return Scaffold(
       body: Column(
@@ -78,23 +82,43 @@ class SettingsView extends GetView<SettingsController> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Bareel Husein, S.Kom',
-                          style: TextStyle(
-                            fontSize:
-                                MediaQuery.of(context).size.height * 0.023,
-                            fontWeight: Fw.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          'Manager IT - Pusat',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize:
-                                MediaQuery.of(context).size.height * 0.02,
-                          ),
-                        ),
+                        FutureBuilder(
+                            future: Auth.user(),
+                            builder: (context, snap) {
+                              final user = snap.data;
+
+                              return SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.5,
+                                child: Text(
+                                  '${user?.name}',
+                                  style: TextStyle(
+                                      fontSize:
+                                          MediaQuery.of(context).size.height *
+                                              0.027,
+                                      fontWeight: Fw.bold,
+                                      color: Colors.white,
+                                      fontFamily: 'DeliciousHandrawn'),
+                                  softWrap: true,
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 2,
+                                ),
+                              );
+                            }),
+                        FutureBuilder(
+                            future: Auth.user(),
+                            builder: (context, snap) {
+                              final user = snap.data;
+
+                              return Text(
+                                '${user?.role}',
+                                style: TextStyle(
+                                    fontSize:
+                                        MediaQuery.of(context).size.height *
+                                            0.02,
+                                    color: Colors.white,
+                                    fontFamily: 'DeliciousHandrawn'),
+                              );
+                            }),
                       ],
                     ),
                   ),
@@ -136,23 +160,28 @@ class SettingsView extends GetView<SettingsController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding:  EdgeInsets.only(left: MediaQuery.of(context).size.height * 0.01,),
-                        child:  Text(
+                        padding: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.height * 0.01,
+                        ),
+                        child: Text(
                           'Februari - 2025',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: MediaQuery.of(context).size.height * 0.025,
+                            fontSize:
+                                MediaQuery.of(context).size.height * 0.025,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
-                       SizedBox(height: MediaQuery.of(context).size.height * 0.01,),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.01,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          _buildInfoBox("2", "Hari", "Cuti",context),
-                          _buildInfoBox("6", "Hari", "Izin",context),
-                          _buildInfoBox("1000", "Menit", "Telat",context),
+                          _buildInfoBox("2", "Hari", "Cuti", context),
+                          _buildInfoBox("6", "Hari", "Izin", context),
+                          _buildInfoBox("1000", "Menit", "Telat", context),
                         ],
                       ),
                     ],
@@ -233,15 +262,39 @@ class AccountOption extends StatelessWidget {
       children: options.generate((menu, i) {
         return Touch(
           key: ValueKey('menu_$i'),
-          onTap: () {},
-          hoverable: true,
+          onTap: () {
+            switch (i) {
+              case 0:
+                Get.toNamed(Routes.DATA_DIRI);
+                break;
+              case 1:
+                Get.toNamed(Routes.PASSWORD);
+                break;
+              case 2:
+                Get.toNamed(Routes.BUKU_BANK);
+                break;
+              case 3:
+                Get.toNamed(Routes.BONUS_KARYAWAN);
+                break;
+              case 4:
+                Get.toNamed(Routes.CUTI);
+            }
+          },
           child: Container(
             padding: Ei.sym(v: MediaQuery.of(context).size.width * 0.04),
             decoration: BoxDecoration(border: Br.only(['t'], except: i == 0)),
             child: Row(
               children: [
-                Textr(menu.label, icon: menu.icon,style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.04),),
-                 Icon(Hi.arrowRight01,size: MediaQuery.of(context).size.width * 0.05,)
+                Textr(
+                  menu.label,
+                  icon: menu.icon,
+                  style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.width * 0.04),
+                ),
+                Icon(
+                  Hi.arrowRight01,
+                  size: MediaQuery.of(context).size.width * 0.05,
+                )
               ],
             ).between,
           ),
@@ -251,10 +304,17 @@ class AccountOption extends StatelessWidget {
   }
 }
 
-Widget _buildInfoBox(String number, String unit, String label,BuildContext context,) {
+Widget _buildInfoBox(
+  String number,
+  String unit,
+  String label,
+  BuildContext context,
+) {
   double fontSizes = MediaQuery.of(context).size.width * 0.05;
   return Padding(
-    padding:  EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.04, right: MediaQuery.of(context).size.width * 0.04),
+    padding: EdgeInsets.only(
+        left: MediaQuery.of(context).size.width * 0.04,
+        right: MediaQuery.of(context).size.width * 0.04),
     child: Column(
       children: [
         Text.rich(
@@ -279,8 +339,10 @@ Widget _buildInfoBox(String number, String unit, String label,BuildContext conte
           ),
         ),
         Text(label,
-            style:  TextStyle(
-                color: Colors.white, fontSize: MediaQuery.of(context).size.width * 0.04, fontWeight: Fw.bold)),
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: MediaQuery.of(context).size.width * 0.04,
+                fontWeight: Fw.bold)),
       ],
     ),
   );

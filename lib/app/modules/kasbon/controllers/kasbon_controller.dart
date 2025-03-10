@@ -9,19 +9,18 @@ class KasbonController extends GetxController {
   Rx<DateTime?> selectedDate = Rx<DateTime?>(null);
   RxDouble height = 140.0.obs;
   var showDetails = false.obs;
-var kasbonList = <Kasbon>[].obs;
+  var kasbonList = <Kasbon>[].obs;
 
   void addKasbon(Kasbon kasbon) {
     kasbonList.add(kasbon);
   }
+
   void adjustHeader(double value) {
     height.value = value;
   }
 
   Future<void> refreshData() async {
-    await Future.delayed(Duration(seconds: 1)); 
-    
-    
+    await Future.delayed(Duration(seconds: 1));
 
     if (!Get.isSnackbarOpen) {
       Get.snackbar(
@@ -71,7 +70,7 @@ var kasbonList = <Kasbon>[].obs;
                   width: double.infinity,
                   height: 50,
                   decoration: const BoxDecoration(
-                    color:  Color(0xFF4CA1AF),
+                    color: Color(0xFF4CA1AF),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(15),
                       topRight: Radius.circular(15),
@@ -98,7 +97,6 @@ var kasbonList = <Kasbon>[].obs;
                     ],
                   ),
                 ),
-
                 const SizedBox(height: 10),
                 Expanded(
                   child: Padding(
@@ -107,6 +105,19 @@ var kasbonList = <Kasbon>[].obs;
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Text('Nomor Pengajuan',style: TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                            ),),
+                          TextField(
+                            controller: nominalController.value,
+                            keyboardType: TextInputType.number,
+                            style: TextStyle(color: Colors.black),
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
                           const Text(
                             "Tanggal Pengajuan",
                             style: TextStyle(
@@ -128,8 +139,8 @@ var kasbonList = <Kasbon>[].obs;
                                   child: Text(
                                     selectedDate.value == null
                                         ? "Pilih Tanggal"
-                                        : DateFormat("dd MMM yyyy")
-                                            .format(selectedDate.value!),
+                                        : selectedDate.value!
+                                            .format('dd MMM y'),
                                     style: const TextStyle(fontSize: 16),
                                   ),
                                 )),

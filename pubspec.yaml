@@ -1,7 +1,7 @@
 name: qrm
 description: "A new Flutter project."
 
-publish_to: 'none' 
+publish_to: 'none'
 
 version: 1.0.0+1
 
@@ -9,19 +9,21 @@ environment:
   sdk: ^3.6.1
 
 dependencies:
+  cupertino_icons: ^1.0.8
+  fetchly: ^0.5.4
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.8
-  get: ^4.6.6
-  lazyui: ^4.2.3
   flutter_launcher_icons: ^0.14.3
-  video_player: ^2.9.2
+  get: ^4.6.6
+  get_storage: ^2.1.1
   google_fonts: ^6.2.1
+  lazyui: ^4.3.0-rc.1.27
+  video_player: ^2.9.2
 
 dev_dependencies:
+  flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
 
 flutter:
   uses-material-design: true
@@ -31,22 +33,21 @@ flutter:
     - assets/images/
     - assets/images/animasi2.mp4
 
-
   fonts:
     - family: PassionOne
       fonts:
         - asset: assets/static/PassionOne-Bold.ttf
-    
+
     - family: Poppins
-      fonts: 
+      fonts:
         - asset: assets/static/font/Poppins-Bold.ttf
-    
+
     - family: DeliciousHandrawn
-      fonts: 
+      fonts:
         - asset: assets/static/DeliciousHandrawn-Regular.ttf
-    
+
     - family: PermanentMarker
-      fonts: 
+      fonts:
         - asset: assets/static/PermanentMarker-Regular.ttf
 
 flutter_icons:

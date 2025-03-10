@@ -1,5 +1,7 @@
+import 'package:fetchly/fetchly.dart';
 import 'package:get/get.dart';
-import 'package:qrm/app/modules/login/views/login_view.dart';
+import 'package:qrm/app/data/services/storage/storage.dart';
+import 'package:qrm/app/routes/app_pages.dart';
 import 'package:video_player/video_player.dart';
 
 class SplashScreenController extends GetxController {
@@ -11,20 +13,29 @@ class SplashScreenController extends GetxController {
     super.onInit();
     videoController = VideoPlayerController.asset('assets/images/animasi2.mp4');
 
-videoController.initialize().then((_) {
-  videoController.play();
-  isVideoInitialized.value = true;
+    videoController.initialize().then((_) {
+      videoController.play();
+      isVideoInitialized.value = true;
 
-  videoController.addListener(() {
-    if (videoController.value.position >= videoController.value.duration) {
-      Get.off(() => LoginView());
-    }
-  });
-}).catchError((error) {
-  print("Error initializing video: $error");
-});
+      videoController.addListener(() {
+        if (videoController.value.position >= videoController.value.duration) {
+          // Get.off(() => LoginView());
 
+          // cek data token, jika sudah ada berarti sudah pernah login sebelumnya
+          // maka langsung arahkan ke halaman dashboard
 
+          String? token = storage.read('token');
+
+          if (token != null) {
+            Fetchly.setToken(token, prefix: '');
+            Get.offNamed(Routes.APP);
+            return;
+          }
+
+          Get.offAndToNamed(Routes.LOGIN);
+        }
+      });
+    });
   }
 
   @override
@@ -33,4 +44,3 @@ videoController.initialize().then((_) {
     super.onClose();
   }
 }
-

@@ -41,7 +41,8 @@ class Bsd extends StatelessWidget {
           ];
 
           return Container(
-            margin: Ei.only(l: i == 0 ? 0 : MediaQuery.of(context).size.width * 0.03),
+            margin: Ei.only(
+                l: i == 0 ? 0 : MediaQuery.of(context).size.width * 0.03),
             child: Column(
               children: [
                 GestureDetector(
@@ -59,7 +60,8 @@ class Bsd extends StatelessWidget {
                 ),
                 Text(
                   labels[i],
-                  style: Gfont.fs14.copyWith(fontSize: MediaQuery.of(context).size.height * 0.018),
+                  style: Gfont.fs14.copyWith(
+                      fontSize: MediaQuery.of(context).size.height * 0.018),
                   textAlign: Ta.center,
                 )
               ],
@@ -70,8 +72,6 @@ class Bsd extends StatelessWidget {
     );
   }
 }
-
-
 
 // Center(
 //               child: Column(
@@ -393,31 +393,31 @@ class Bsd extends StatelessWidget {
 //                       ],
 //                     ),
 //                   ),
-                  // GestureDetector(
-                  //   //masukan ke colum b
-                  //   onTap: () {
-                  //     setState(() {
-                  //       Get.snackbar(
-                  //           'Info', 'Data bulan Desember tidak ditambahkan');
-                  //     });
-                  //   },
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //     children: [
-                  //       Text(
-                  //         'Desember',
-                  //         style: TextStyle(
-                  //             fontSize: 18, fontWeight: FontWeight.bold),
-                  //       ),
-                  //       SizedBox(width: 5),
-                  //       Icon(
-                  //         showDetails
-                  //             ? Icons.keyboard_arrow_up
-                  //             : Icons.keyboard_arrow_down,
-                  //         size: 24,
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),//
+// GestureDetector(
+//   //masukan ke colum b
+//   onTap: () {
+//     setState(() {
+//       Get.snackbar(
+//           'Info', 'Data bulan Desember tidak ditambahkan');
+//     });
+//   },
+//   child: Row(
+//     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//     children: [
+//       Text(
+//         'Desember',
+//         style: TextStyle(
+//             fontSize: 18, fontWeight: FontWeight.bold),
+//       ),
+//       SizedBox(width: 5),
+//       Icon(
+//         showDetails
+//             ? Icons.keyboard_arrow_up
+//             : Icons.keyboard_arrow_down,
+//         size: 24,
+//       ),
+//     ],
+//   ),
+// ),//
 //                 ],
 //               ),//

@@ -1,0 +1,21 @@
+misal kita mau buat halaman produk
+
+1. buat modul product 
+get create page:product
+
+2. buat API product menggunakan fatchly
+dart run fetchly:create product
+
+3. cek dokumentasi di website atau postman, misal seperti urlnya, datanya, dll
+
+4. coba jalankan apinya di postman, pastikan datanya didapat berupa json atau list json
+
+5. copas datanya lalu convert ke model dengan cara, buka di vscode ketik F1 lalu pilih Json to Dart: From Clipboard,
+    isi nama misal Product, setelah itu ikuti sampai selesai taruh di folder app/data/models
+
+6. jalankan perintah dart run fetchly:model product untuk membuat method fromJsonList
+
+7. panggil api yang dibuat di controller dengan with Apis
+
+8. buat method yang dibutuhkan seperti getData, createData, update, dll
+

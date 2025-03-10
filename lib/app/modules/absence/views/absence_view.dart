@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:get/get.dart';
 import 'package:lazyui/lazyui.dart';
 import 'package:flutter/material.dart';
@@ -38,31 +40,8 @@ class _AbsenceViewState extends State<AbsenceView> {
         {'tanggal': 'Sabtu, 1 Januari 2025', 'status': 'Terlambat'},
       ]
     },
-    {
-      "bulan": "Desember",
-      "data": [
-        {'tanggal': 'Senin, 10 Desember 2025', 'status': 'Sakit'},
-        {'tanggal': 'Sabtu, 8 Desember 2025', 'status': 'Normal'},
-        {'tanggal': 'Jumat, 7 Desember 2025', 'status': 'Normal'},
-        {'tanggal': 'kamis, 6 Desember 2025', 'status': 'Normal'},
-        {'tanggal': 'Rabu, 5 Desember 2025', 'status': 'Terlambat'},
-        {'tanggal': 'Selasa, 4 Desember 2025', 'status': 'Normal'},
-        {'tanggal': 'Senin, 3 Desember 2025', 'status': 'Normal'},
-        {'tanggal': 'Sabtu, 1 Desember 2025', 'status': 'Terlambat'},
-      ]
-    },{
-      "bulan": "November",
-      "data": [
-        {'tanggal': 'Senin, 10 November 2025', 'status': 'Sakit'},
-        {'tanggal': 'Sabtu, 8 November 2025', 'status': 'Normal'},
-        {'tanggal': 'Jumat, 7 November 2025', 'status': 'Normal'},
-        {'tanggal': 'kamis, 6 November 2025', 'status': 'Normal'},
-        {'tanggal': 'Rabu, 5 November 2025', 'status': 'Terlambat'},
-        {'tanggal': 'Selasa, 4 November 2025', 'status': 'Normal'},
-        {'tanggal': 'Senin, 3 November 2025', 'status': 'Normal'},
-        {'tanggal': 'Sabtu, 1 November 2025', 'status': 'Terlambat'},
-      ]
-    },
+    
+    
   ];
 
   @override
@@ -103,7 +82,7 @@ class _AbsenceViewState extends State<AbsenceView> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Bareel Husein, S. Kom',
+                                '',
                                 style: TextStyle(
                                     fontSize:
                                         MediaQuery.of(context).size.height *
@@ -185,23 +164,19 @@ class _AbsenceViewState extends State<AbsenceView> {
                                                 0.02,
                                       ),
                                     ),
-
                                     SizedBox(
                                       height:
                                           MediaQuery.of(context).size.height *
                                               0.02,
-                                    ), 
-
+                                    ),
                                     Container(
                                       padding: EdgeInsets.all(
                                         MediaQuery.of(context).size.height *
                                             0.0025,
-                                      ), 
+                                      ),
                                       decoration: BoxDecoration(
-                                        color: Color.fromARGB(255, 255, 0,
-                                            0),  
-                                        borderRadius: BorderRadius.circular(
-                                            5),  
+                                        color: Color.fromARGB(255, 255, 0, 0),
+                                        borderRadius: BorderRadius.circular(5),
                                       ),
                                       child: Text(
                                         'Terlambat',
@@ -210,8 +185,7 @@ class _AbsenceViewState extends State<AbsenceView> {
                                                   .size
                                                   .height *
                                               0.02,
-                                          color: Colors
-                                              .white,  
+                                          color: Colors.white,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -382,8 +356,7 @@ class _AbsenceViewState extends State<AbsenceView> {
                         Column(
                           children: [
                             SizedBox(
-                              height: MediaQuery.of(context).size.height *
-                                  0.25, 
+                              height: MediaQuery.of(context).size.height * 0.25,
                               child: SingleChildScrollView(
                                 physics: AlwaysScrollableScrollPhysics(),
                                 child: Column(

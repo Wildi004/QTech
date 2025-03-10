@@ -41,7 +41,8 @@ class RegBarat extends StatelessWidget {
           ];
 
           return Container(
-            margin: Ei.only(l: i == 0 ? 0 : MediaQuery.of(context).size.width * 0.03),
+            margin: Ei.only(
+                l: i == 0 ? 0 : MediaQuery.of(context).size.width * 0.03),
             child: Column(
               children: [
                 GestureDetector(
@@ -59,7 +60,8 @@ class RegBarat extends StatelessWidget {
                 ),
                 Text(
                   labels[i],
-                  style: Gfont.fs14.copyWith(fontSize: MediaQuery.of(context).size.height * 0.018),
+                  style: Gfont.fs14.copyWith(
+                      fontSize: MediaQuery.of(context).size.height * 0.018),
                   textAlign: Ta.center,
                 )
               ],

@@ -11,13 +11,12 @@ class AppView extends GetView<AppController> {
   const AppView({super.key});
 
   @override
-  
   Widget build(BuildContext context) {
     return Obx(() {
       return Scaffold(
         body: IndexedStack(
           index: controller.navIndex.value,
-          children: const [
+          children:  [
             HomeView(),
             AbsenceView(),
             ProductView(),

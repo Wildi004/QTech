@@ -8,7 +8,7 @@ class KasbonView extends GetView<KasbonController> {
 
   @override
   Widget build(BuildContext context) {
-    bool showDetails = false;
+    // bool showDetails = false;
     final KasbonController refreshController = Get.put(KasbonController());
     List<Map<String, String>> absensiFebruari = [
       {
@@ -24,7 +24,6 @@ class KasbonView extends GetView<KasbonController> {
         onRefresh: refreshController.refreshData,
         child: Stack(
           children: [
-            
             Obx(() => Container(
                   width: MediaQuery.of(context).size.width,
                   height: controller.height.value,
@@ -46,8 +45,6 @@ class KasbonView extends GetView<KasbonController> {
                     ),
                   ),
                 )),
-
-            
             LzListView(
               physics: const NeverScrollableScrollPhysics(),
               gap: 20,
@@ -123,8 +120,7 @@ class KasbonView extends GetView<KasbonController> {
                                     color: Colors.white,
                                     boxShadow: [
                                       BoxShadow(
-                                        
-                                        color: Colors.black.withOpacity(0.2),
+                                        color: Colors.black.applyOpacity(0.2),
                                         blurRadius: 5,
                                         spreadRadius: 1,
                                       ),
@@ -155,7 +151,7 @@ class KasbonView extends GetView<KasbonController> {
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.06,
                     decoration: BoxDecoration(
-                        color:Color(0xFF5E5BA7),
+                        color: Color(0xFF5E5BA7),
                         borderRadius: BorderRadius.circular(10)),
                     child: Align(
                       child: Row(
@@ -202,7 +198,7 @@ class KasbonView extends GetView<KasbonController> {
                           controller.showDetails.value =
                               !controller.showDetails.value;
                         },
-                        child: Column(                  
+                        child: Column(
                           children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -234,7 +230,9 @@ class KasbonView extends GetView<KasbonController> {
                                       MediaQuery.of(context).size.width * 0.4,
                                   decoration: BoxDecoration(
                                     gradient: LinearGradient(
-                                        colors: ['808080'.hex, '4CA1AF'.hex],begin: Alignment.bottomCenter,end: Alignment.topCenter),
+                                        colors: ['808080'.hex, '4CA1AF'.hex],
+                                        begin: Alignment.bottomCenter,
+                                        end: Alignment.topCenter),
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: ListView.builder(
@@ -356,10 +354,7 @@ class KasbonView extends GetView<KasbonController> {
                         ),
                         SizedBox(width: 5),
                         Icon(
-                          showDetails
-                              
-                              ? Icons.keyboard_arrow_up
-                              : Icons.keyboard_arrow_down,
+                          Icons.keyboard_arrow_down,
                           size: 24,
                         ),
                       ],
@@ -382,9 +377,7 @@ class KasbonView extends GetView<KasbonController> {
                         ),
                         SizedBox(width: 5),
                         Icon(
-                          showDetails
-                              ? Icons.keyboard_arrow_up
-                              : Icons.keyboard_arrow_down,
+                          Icons.keyboard_arrow_down,
                           size: 24,
                         ),
                       ],

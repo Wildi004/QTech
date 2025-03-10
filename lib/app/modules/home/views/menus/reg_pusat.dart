@@ -7,7 +7,7 @@ class RegPusat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      physics: BounceScroll(),
+      physics: Scrolics.bounce,
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
@@ -34,7 +34,8 @@ class RegPusat extends StatelessWidget {
           ];
 
           return Container(
-            margin: Ei.only(l: i == 0 ? 0 : MediaQuery.of(context).size.width * 0.03),
+            margin: Ei.only(
+                l: i == 0 ? 0 : MediaQuery.of(context).size.width * 0.03),
             child: Column(
               children: [
                 GestureDetector(
@@ -52,7 +53,8 @@ class RegPusat extends StatelessWidget {
                 ),
                 Text(
                   labels[i],
-                  style: TextStyle(fontSize: MediaQuery.of(context).size.height * 0.018),
+                  style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.height * 0.018),
                   textAlign: Ta.center,
                 )
               ],

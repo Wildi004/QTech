@@ -1,11 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lazyui/lazyui.dart';
+import 'package:qrm/app/data/apis/api.dart';
+import 'package:qrm/app/data/models/current_user.dart';
+import 'package:qrm/app/data/models/user.dart';
+import 'package:qrm/app/data/services/storage/auth.dart';
+import 'package:qrm/app/data/services/storage/storage.dart';
+import 'package:qrm/app/routes/app_pages.dart';
 
-class HomeController extends GetxController {
+class HomeController extends GetxController with Apis {
   var tabInd = 0.obs;
   final ScrollController scrollController = ScrollController();
   RxDouble backgroundHeight = 200.0.obs;
+  RxBool isLoading = true.obs;
+  RxBool isProductLoading = true.obs;
+  var user = Rxn<User>();
+  var curent = Rxn<CurrentUser>();
+
+  
+
+
+  int page = 1;
+  Map<String, dynamic> get query => {'page': page, 'per_page': 10};
   RxInt tabIndex = 0.obs;
   var items = <Map<String, dynamic>>[
     {
@@ -24,13 +40,50 @@ class HomeController extends GetxController {
       'location': 'Kuala Lumpur - Malaysia',
     },
   ].obs;
+
+  Future getUserLogged() async {
+    try {
+      final auth = await Auth.user();
+      final res = await api.user.getData(auth.id!);
+      
+    } catch (e, s) {
+      Errors.check(e, s);
+    }
+  }
+
+  Future onPageInit() async {
+    try {
+      await getUserLogged();
+    } catch (e, s) {
+      Errors.check(e, s);
+    }
+  }
+
+ Future getData() async{
+  try {
+    isLoading.value = true;
+    final res = await api.currentUser.getData(query);
+    print('data currnt $res');
+  } catch (e, s){
+    Errors.check(e, s);
+  } finally{
+    isLoading.value = true;
+  }
+  
+ }
+
+
   @override
   void onInit() {
+    getData();
+    getUserLogged();
     super.onInit();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      onPageInit();
+
       if (scrollController.hasClients) {
         scrollController.animateTo(
-          140 * 1, 
+          140 * 1,
           duration: Duration(milliseconds: 200),
           curve: Curves.easeInOut,
         );
@@ -55,6 +108,16 @@ class HomeController extends GetxController {
       backgroundHeight.value = 200 + pixel.abs();
     } else {
       backgroundHeight.value = (200 - pixel.abs()).clamp(0, 200);
+    }
+  }
+
+  // this is method for logout from user account
+  Future logout() async {
+    try {
+      storage.remove('token');
+      Get.offAllNamed(Routes.LOGIN);
+    } catch (e, s) {
+      Errors.check(e, s);
     }
   }
 }

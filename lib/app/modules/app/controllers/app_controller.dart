@@ -5,12 +5,11 @@ class AppController extends GetxController {
   RxBool showSplash = true.obs;
   RxInt navIndex = 0.obs;
 
-  List <int> visited = [0];
+  List<int> visited = [0];
 
-  void onNavigate (int index){
-    navIndex.value= index;
+  void onNavigate(int index) {
+    navIndex.value = index;
 
     visited.addIf(!visited.contains(index), index);
   }
 }
-
