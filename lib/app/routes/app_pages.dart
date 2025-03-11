@@ -18,6 +18,8 @@ import '../modules/kasbon/bindings/kasbon_binding.dart';
 import '../modules/kasbon/views/kasbon_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
+import '../modules/login_pin/bindings/login_pin_binding.dart';
+import '../modules/login_pin/views/login_pin_view.dart';
 import '../modules/menu_edit/bindings/menu_edit_binding.dart';
 import '../modules/menu_edit/views/menu_edit_view.dart';
 import '../modules/password/bindings/password_binding.dart';
@@ -40,7 +42,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.APP;
+  static const INITIAL = Routes.LOGIN;
 
   static final routes = [
     GetPage(
@@ -122,6 +124,11 @@ class AppPages {
       name: _Paths.DATA_DIRI,
       page: () => DataDiriView(),
       binding: DataDiriBinding(),
+    ),
+    GetPage(
+      name: _Paths.LOGIN_PIN,
+      page: () =>  LoginPinView(),
+      binding: LoginPinBinding(),
     ),
   ];
 }

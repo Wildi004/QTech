@@ -1,5 +1,7 @@
-part of 'api.dart';
+// part of 'api.dart';
 
-class CurrentUserApi extends Fetchly {
-  Future<Response> getData([Map<String, dynamic>? query]) async => get('path', query);
-}
+// class CurrentUserApi extends Fetchly {
+  
+// } 
+
+                              

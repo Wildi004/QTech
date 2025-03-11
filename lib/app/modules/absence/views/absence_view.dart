@@ -3,6 +3,7 @@
 import 'package:get/get.dart';
 import 'package:lazyui/lazyui.dart';
 import 'package:flutter/material.dart';
+import 'package:qrm/app/data/services/storage/auth.dart';
 
 class AbsenceView extends StatefulWidget {
   const AbsenceView({super.key});
@@ -40,8 +41,6 @@ class _AbsenceViewState extends State<AbsenceView> {
         {'tanggal': 'Sabtu, 1 Januari 2025', 'status': 'Terlambat'},
       ]
     },
-    
-    
   ];
 
   @override
@@ -81,21 +80,45 @@ class _AbsenceViewState extends State<AbsenceView> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                '',
-                                style: TextStyle(
-                                    fontSize:
-                                        MediaQuery.of(context).size.height *
-                                            0.02,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                'Manager IT - Pusat',
-                                style: TextStyle(
-                                  fontSize: MediaQuery.of(context).size.height *
-                                      0.016,
-                                ),
-                              ),
+                              FutureBuilder(
+                                  future: Auth.user(),
+                                  builder: (context, snap) {
+                                    final user = snap.data;
+
+                                    return SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.5,
+                                      child: Text(
+                                        '${user?.name}',
+                                        style: TextStyle(
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.02,
+                                          fontWeight: Fw.bold,
+                                          color: Colors.black,
+                                        ),
+                                        softWrap: true,
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 2,
+                                      ),
+                                    );
+                                  }),
+                              FutureBuilder(
+                                  future: Auth.user(),
+                                  builder: (context, snap) {
+                                    final user = snap.data;
+
+                                    return Text(
+                                      '${user?.role}',
+                                      style: TextStyle(
+                                        fontSize:
+                                            MediaQuery.of(context).size.height *
+                                                0.014,
+                                        color: Colors.black,
+                                      ),
+                                    );
+                                  }),
                             ],
                           ),
                         ],
@@ -137,139 +160,66 @@ class _AbsenceViewState extends State<AbsenceView> {
                               ),
                             ),
                             SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.01,
+                              height: MediaQuery.of(context).size.height * 0.03,
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
+                            Column(children: [
+                              Text('09:05:00 WITA',style: TextStyle(fontWeight: Fw.bold),),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.red,
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(5))),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(3),
+                                    child: Text('Terlambat'),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.03,
+                              ),
+                              Container(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.05,
+                                width: MediaQuery.of(context).size.width * 0.35,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color(0xFF302C7B),
+                                      Color(0xFF5C5A7C)
+                                    ],
+                                  ),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text(
-                                      'Absen Masuk',
-                                      style: TextStyle(
-                                        fontSize:
-                                            MediaQuery.of(context).size.height *
-                                                0.02,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'Poppins',
-                                      ),
-                                    ),
-                                    Text(
-                                      '00:00:00 WITA',
-                                      style: TextStyle(
-                                        fontSize:
-                                            MediaQuery.of(context).size.height *
-                                                0.02,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.02,
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.all(
-                                        MediaQuery.of(context).size.height *
-                                            0.0025,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: Color.fromARGB(255, 255, 0, 0),
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
-                                      child: Text(
-                                        'Terlambat',
-                                        style: TextStyle(
-                                          fontSize: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.02,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
+                                    Icon(Hi.login03,
+                                        color: Colors.white, size: 18),
+                                    SizedBox(width: 5),
+                                    GestureDetector(
+                                      onTap: () {
+                                        Get.snackbar('Absen Masuk',
+                                            'Berhasil absen masuk');
+                                      },
+                                      child: Text('Absen Masuk',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 11)),
                                     ),
                                   ],
                                 ),
-                                Column(
-                                  crossAxisAlignment: Caa.start,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                        right:
-                                            MediaQuery.of(context).size.height *
-                                                0.007,
-                                        top:
-                                            MediaQuery.of(context).size.height *
-                                                0.001,
-                                      ),
-                                      child: Text(
-                                        'Absen Pulang',
-                                        style: TextStyle(
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.02,
-                                            color: Colors.black,
-                                            fontWeight: Fw.bold,
-                                            fontFamily: 'Poppins'),
-                                      ),
-                                    ),
-                                    Text(
-                                      '00:00:00 WITA',
-                                      style: TextStyle(
-                                        fontSize:
-                                            MediaQuery.of(context).size.height *
-                                                0.02,
-                                      ),
-                                    ),
-                                    Text(''),
-                                    Text(''),
-                                  ],
-                                ),
-                              ],
-                            ),
+                              ),
+                            ]),
                             SizedBox(
                               height: MediaQuery.of(context).size.height * 0.02,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.05,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.35,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    gradient: LinearGradient(
-                                      colors: [
-                                        Color(0xFF302C7B),
-                                        Color(0xFF5C5A7C)
-                                      ],
-                                    ),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(Hi.login03,
-                                          color: Colors.white, size: 18),
-                                      SizedBox(width: 5),
-                                      GestureDetector(
-                                        onTap: () {
-                                          Get.snackbar('Absen Masuk',
-                                              'Berhasil absen masuk');
-                                        },
-                                        child: Text('Absen Masuk',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 11)),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
+                              children: [],
                             ),
                           ],
                         ),

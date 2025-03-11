@@ -7,7 +7,6 @@ import 'package:qrm/app/data/models/user.dart';
 import 'package:qrm/app/data/services/storage/auth.dart';
 import 'package:qrm/app/data/services/storage/storage.dart';
 import 'package:qrm/app/routes/app_pages.dart';
-
 class HomeController extends GetxController with Apis {
   var tabInd = 0.obs;
   final ScrollController scrollController = ScrollController();
@@ -15,11 +14,7 @@ class HomeController extends GetxController with Apis {
   RxBool isLoading = true.obs;
   RxBool isProductLoading = true.obs;
   var user = Rxn<User>();
-  var curent = Rxn<CurrentUser>();
-
-  
-
-
+ var curent =Rxn<CurrentUser>();
   int page = 1;
   Map<String, dynamic> get query => {'page': page, 'per_page': 10};
   RxInt tabIndex = 0.obs;
@@ -40,7 +35,6 @@ class HomeController extends GetxController with Apis {
       'location': 'Kuala Lumpur - Malaysia',
     },
   ].obs;
-
   Future getUserLogged() async {
     try {
       final auth = await Auth.user();
@@ -50,7 +44,6 @@ class HomeController extends GetxController with Apis {
       Errors.check(e, s);
     }
   }
-
   Future onPageInit() async {
     try {
       await getUserLogged();
@@ -58,24 +51,22 @@ class HomeController extends GetxController with Apis {
       Errors.check(e, s);
     }
   }
-
- Future getData() async{
+ Future getCurrent() async{
   try {
     isLoading.value = true;
-    final res = await api.currentUser.getData(query);
+    final res = await api.user.getCurrent(query); //paginasi
     print('data currnt $res');
   } catch (e, s){
     Errors.check(e, s);
   } finally{
-    isLoading.value = true;
+    isLoading.value = false;
   }
-  
  }
 
 
   @override
   void onInit() {
-    getData();
+    getCurrent();
     getUserLogged();
     super.onInit();
     WidgetsBinding.instance.addPostFrameCallback((_) {

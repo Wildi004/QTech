@@ -22,6 +22,7 @@ abstract class Routes {
   static const BUKU_BANK = _Paths.BUKU_BANK;
   static const PASSWORD = _Paths.PASSWORD;
   static const DATA_DIRI = _Paths.DATA_DIRI;
+  static const LOGIN_PIN = _Paths.LOGIN_PIN;
 }
 
 abstract class _Paths {
@@ -44,4 +45,5 @@ abstract class _Paths {
   static const BUKU_BANK = '/buku-bank';
   static const PASSWORD = '/password';
   static const DATA_DIRI = '/data-diri';
+  static const LOGIN_PIN = '/login-pin';
 }

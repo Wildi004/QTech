@@ -36,13 +36,13 @@ class LoginController extends GetxController with Apis {
         storage.write('user', res.data);
 
         // set token ke fetchly supaya bisa mengakses api lainnya
-        Fetchly.setToken(token, prefix: '');
+        Fetchly.setToken(token);
 
         // set message
         Toast.success('Login berhasil');
 
         // pergi ke halaman dashboard
-        Get.offNamed(Routes.APP);
+        Get.toNamed(Routes.APP);
       }
     } catch (e, s) {
       Errors.check(e, s);

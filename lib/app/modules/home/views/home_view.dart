@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:lazyui/lazyui.dart';
 import 'package:qrm/app/core/utils/extensions.dart';
 import 'package:qrm/app/data/apis/api.dart';
-import 'package:qrm/app/data/models/user.dart';
 import 'package:qrm/app/data/services/storage/auth.dart';
 import 'package:qrm/app/modules/home/views/menus/bsd.dart';
 import 'package:qrm/app/modules/home/views/menus/finance_pusat.dart';
@@ -15,7 +14,7 @@ import 'package:qrm/app/modules/home/views/menus/reg_timur.dart';
 import 'package:qrm/app/routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 
-class HomeView extends GetView<HomeController> with Apis {
+class HomeView extends GetView<HomeController> {
   HomeView({super.key});
 
   @override
@@ -120,11 +119,16 @@ class HomeView extends GetView<HomeController> with Apis {
                                   fontWeight: FontWeight.bold,
                                   fontFamily: 'DeliciousHandrawn'));
                         }),
-                  Obx((){
-                    final curent = controller.curent.value;
-                    return Text('data ${curent?.agama}');
-                  })
-                   
+                    Obx(() {
+                      final currentList = controller.curent;
+                      bool loading = controller.isLoading.value;
+
+                      if (loading) {
+                        return LzLoader.bar();
+                        
+                      }
+                      return Text('data ${currentList.value?.agama}');
+                    })
                   ],
                 ),
               ),
